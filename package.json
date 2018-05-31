@@ -1,0 +1,41 @@
+{
+  "name": "googlemapcustomhtmloverlay",
+  "version": "0.1.0",
+  "description": "WIP",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chmylov/GoogleMapCustomHtmlOverlay.git"
+  },
+  "author": "Danny Chmylov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chmylov/GoogleMapCustomHtmlOverlay/issues"
+  },
+  "homepage": "https://github.com/Chmylov/GoogleMapCustomHtmlOverlay#readme",
+  "devDependencies": {
+    "autoprefixer": "^8.5.2",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.4",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-flatten": "^0.4.0",
+    "gulp-if-else": "^1.0.3",
+    "gulp-plumber": "^1.2.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
+    "run-sequence": "^2.2.1"
+  }
+}
