@@ -17,7 +17,7 @@ gulp.task('enableDev', () => (isDev = true));
 const browserSync = require('browser-sync').create();
 
 gulp.task('browserSync', () => {
-  browserSync.init({ server: './example' });
+  browserSync.init({ server: ['./dist', './example'] });
 });
 // ----------------------------------------------
 
@@ -46,32 +46,6 @@ gulp.task('js', () => {
     .pipe(ifElse(isDev, () => sourcemaps.write()))
     .pipe(ifElse(!isDev, () => uglify()))
     .pipe(gulp.dest('dist'))
-    .pipe(browserSync.stream());
-});
-
-// CSS & prettier tasks
-// ----------------------------------------------
-gulp.task('sass', () => {
-  // Task dependities
-  // npm i gulp-sourcemaps gulp-plumber gulp-if-else gulp-sass autoprefixer gulp-clean-css gulp-postcss -D
-  const sourcemaps = require('gulp-sourcemaps');
-  const plumber = require('gulp-plumber');
-  const ifElse = require('gulp-if-else');
-
-  const sass = require('gulp-sass');
-  const autoprefixer = require('autoprefixer');
-  const cleanCSS = require('gulp-clean-css');
-  const postcss = require('gulp-postcss');
-
-  gulp
-    .src('src/scss/main.scss')
-    .pipe(plumber())
-    .pipe(ifElse(isDev, () => sourcemaps.init()))
-    .pipe(sass().on('error', sass.logError))
-    .pipe(postcss([autoprefixer()]))
-    .pipe(ifElse(isDev, () => sourcemaps.write()))
-    .pipe(ifElse(!isDev, () => cleanCSS()))
-    .pipe(gulp.dest('example'))
     .pipe(browserSync.stream());
 });
 
@@ -124,7 +98,7 @@ gulp.task('default', () => {
 
   // Wait for cleanDist task
   setTimeout(() => {
-    runSequence('html', 'js', 'sass');
+    runSequence('html', 'js');
     // Run browserSync if develop mode is enabled
     ifElse(isDev, () => gulp.start('browserSync'));
   }, 1000);
@@ -132,6 +106,5 @@ gulp.task('default', () => {
 
 gulp.task('watch', ['enableDev', 'default'], () => {
   gulp.watch('src/html/**/*.html', ['html']);
-  gulp.watch('src/scss/**/*.scss', ['sass']);
   gulp.watch('src/js/**/*.js', ['js']);
 });
