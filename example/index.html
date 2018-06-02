@@ -24,31 +24,26 @@
     <script src="https://maps.googleapis.com/maps/api/js" type="text/javascript"></script>
     <script src="googleMapsCustomHtmlOverlay.min.js"></script>
     <script>
+        const amsterdam = {
+            lat: 52.3702157,
+            lng: 4.89516789
+        }
+
         const map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 15,
-            center: {
-                lat: 52.3702157,
-                lng: 4.89516789
-            }
+            center: amsterdam
         });
 
         const overlay = new HtmlOverlay({
             html:
                 '<div style="background: #625f57"><p style="font-size: 18px; color: white; padding: 1px 10px">Amsterdam</p></div>',
-            position: {
-                lat: 52.3702157,
-                lng: 4.89516789
-            },
-            // divClass: 'test',
+            position: amsterdam,
             align: 'center center',
             map: map
         });
 
         const marker = new google.maps.Marker({
-            position: {
-                lat: 52.3702157,
-                lng: 4.89516789
-            },
+            position: amsterdam,
             map: map,
             title: 'Hello World!'
         });
