@@ -2,8 +2,14 @@
 function HtmlOverlay(options) {
   this.position = options.position;
   this.html = options.html;
+  this.divClass = options.divClass;
   this.align = options.align;
   this.setMap(options.map);
+
+  this.ifNotUndefined = function(arg, callback) {
+    if (typeof arg === 'undefined') return;
+    return callback();
+  };
 }
 
 HtmlOverlay.prototype = new google.maps.OverlayView();
@@ -12,7 +18,16 @@ HtmlOverlay.prototype.onAdd = function() {
   // Create the div element.
   this.div = document.createElement('div');
   this.div.style.position = 'absolute';
-  this.div.innerHTML = this.html;
+
+  // Validate and set custom div class
+  this.ifNotUndefined(this.divClass, () =>
+    this.div.classList.add(this.divClass)
+  );
+
+  // Validate and set custom HTML
+  this.ifNotUndefined(this.html, () => {
+    this.div.innerHTML = this.html;
+  });
 
   // Add the element to the "overlayMouseTarget" pane.
   this.getPanes().overlayMouseTarget.appendChild(this.div);
@@ -52,7 +67,7 @@ HtmlOverlay.prototype.draw = function() {
       break;
   }
 
-  // Set position
+  // Set new position on drag
   this.div.style.top =
     positionCorrectionAfterMapDrag.y - positionRelativeToDivTop + 'px';
   this.div.style.left =
