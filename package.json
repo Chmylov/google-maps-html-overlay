@@ -1,6 +1,6 @@
 {
   "name": "googlemapscustomhtmloverlay",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Google maps custom HTML overlay",
   "main": "gulpfile.js",
   "scripts": {

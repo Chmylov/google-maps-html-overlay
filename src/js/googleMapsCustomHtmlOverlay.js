@@ -4,7 +4,7 @@ function HtmlOverlay(options) {
   this.html = options.html;
   this.divClass = options.divClass;
   this.align = options.align;
-  this.isDebugMode = options.debugMode;
+  this.isDebugMode = options.debug;
   this.setMap(options.map);
 
   this.ifNotUndefined = function(arg, callback) {
@@ -29,8 +29,15 @@ function HtmlOverlay(options) {
   };
 
   this.hasContent = arg => {
-    console.log(arg.length);
     if (arg.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  this.isString = arg => {
+    if (typeof arg === 'string') {
       return true;
     } else {
       return false;
@@ -50,7 +57,11 @@ HtmlOverlay.prototype.onAdd = function() {
     this.div.className = this.divClass;
 
   // Validate and set custom HTML
-  if (this.isNotUndefined(this.html) && this.hasContent(this.html))
+  if (
+    this.isNotUndefined(this.html) &&
+    this.hasContent(this.html) &&
+    this.isString(this.html)
+  )
     this.div.innerHTML = this.html;
 
   // If debug mode is enabled custom content will be replaced with debug content
@@ -87,26 +98,45 @@ HtmlOverlay.prototype.draw = function() {
   );
 
   switch (this.align) {
-    case 'center center':
-      var positionRelativeToDivTop = this.div.offsetHeight / 2;
-      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
+    case 'left top':
+      var positionRelativeToDivTop = this.div.offsetHeight;
+      var positionRelativeToDivLeft = this.div.offsetWidth;
       break;
     case 'left center':
       var positionRelativeToDivTop = this.div.offsetHeight / 2;
       var positionRelativeToDivLeft = this.div.offsetWidth;
       break;
-    case 'right center':
-      var positionRelativeToDivTop = this.div.offsetHeight / 2;
-      var positionRelativeToDivLeft = 0;
+    case 'left bottom':
+      var positionRelativeToDivTop = 0;
+      var positionRelativeToDivLeft = this.div.offsetWidth;
       break;
     case 'center top':
       var positionRelativeToDivTop = this.div.offsetHeight;
+      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
+      break;
+    case 'center center':
+      var positionRelativeToDivTop = this.div.offsetHeight / 2;
       var positionRelativeToDivLeft = this.div.offsetWidth / 2;
       break;
     case 'center bottom':
       var positionRelativeToDivTop = 0;
       var positionRelativeToDivLeft = this.div.offsetWidth / 2;
       break;
+    case 'right top':
+      var positionRelativeToDivTop = this.div.offsetHeight;
+      var positionRelativeToDivLeft = 0;
+      break;
+    case 'right center':
+      var positionRelativeToDivTop = this.div.offsetHeight / 2;
+      var positionRelativeToDivLeft = 0;
+      break;
+    case 'right bottom':
+      var positionRelativeToDivTop = 0;
+      var positionRelativeToDivLeft = 0;
+      break;
+    default:
+      var positionRelativeToDivTop = this.div.offsetHeight / 2;
+      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
   }
 
   // Set new position on drag
