@@ -1,11 +1,8 @@
 {
-  "name": "googlemapcustomhtmloverlay",
+  "name": "googlemapscustomhtmloverlay",
   "version": "0.1.0",
-  "description": "WIP",
-  "main": "index.js",
-  "directories": {
-    "example": "example"
-  },
+  "description": "Google maps custom HTML overlay",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
