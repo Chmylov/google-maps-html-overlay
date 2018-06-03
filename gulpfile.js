@@ -56,12 +56,15 @@ gulp.task('html', () => {
   // npm i gulp-flatten gulp-htmlmin -D
   const flatten = require('gulp-flatten');
   const htmlmin = require('gulp-htmlmin');
+  const ifElse = require('gulp-if-else');
 
   gulp
     .src('src/html/**/*.html')
     .pipe(flatten())
     .pipe(
-      htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true })
+      ifElse(!isDev, () =>
+        htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true })
+      )
     )
     .pipe(gulp.dest('example'))
     .pipe(browserSync.stream());
@@ -95,7 +98,6 @@ gulp.task('default', () => {
   // Task dependities
   // npm i run-sequence gulp-if-else -D
   const runSequence = require('run-sequence');
-  const ifElse = require('gulp-if-else');
 
   gulp.start('cleanDist');
   gulp.start('cleanExample');
@@ -103,12 +105,10 @@ gulp.task('default', () => {
   // Wait for cleanDist task
   setTimeout(() => {
     runSequence('html', 'js');
-    // Run browserSync if develop mode is enabled
-    ifElse(isDev, () => gulp.start('browserSync'));
   }, 1000);
 });
 
-gulp.task('watch', ['default'], () => {
+gulp.task('watch', ['default', 'browserSync'], () => {
   gulp.watch('src/html/**/*.html', ['html']);
   gulp.watch('src/js/**/*.js', ['js']);
 });
