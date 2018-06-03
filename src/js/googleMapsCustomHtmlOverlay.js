@@ -1,5 +1,5 @@
-// Constructor
 function HtmlOverlay(options) {
+  // Constructor
   this.position = options.position;
   this.html = options.html;
   this.divClass = options.divClass;
@@ -81,8 +81,7 @@ HtmlOverlay.prototype.onAdd = function() {
         'align-items: center;'
     );
   }
-
-  // Add element to the "overlayMouseTarget" pane.
+  // Add element to clickable layer
   this.getPanes().overlayMouseTarget.appendChild(this.div);
 
   // Add listener to the element.
@@ -93,55 +92,60 @@ HtmlOverlay.prototype.onAdd = function() {
 };
 
 HtmlOverlay.prototype.draw = function() {
-  var positionCorrectionAfterMapDrag = this.getProjection().fromLatLngToDivPixel(
+  // Calculate positon of div
+  var positionInPixels = this.getProjection().fromLatLngToDivPixel(
     new google.maps.LatLng(this.position)
   );
 
+  // Align HTML overlay relative to original position
+  var divOffset = {
+    y: undefined,
+    x: undefined
+  };
+
   switch (this.align) {
     case 'left top':
-      var positionRelativeToDivTop = this.div.offsetHeight;
-      var positionRelativeToDivLeft = this.div.offsetWidth;
+      divOffset.y = this.div.offsetHeight;
+      divOffset.x = this.div.offsetWidth;
       break;
     case 'left center':
-      var positionRelativeToDivTop = this.div.offsetHeight / 2;
-      var positionRelativeToDivLeft = this.div.offsetWidth;
+      divOffset.y = this.div.offsetHeight / 2;
+      divOffset.x = this.div.offsetWidth;
       break;
     case 'left bottom':
-      var positionRelativeToDivTop = 0;
-      var positionRelativeToDivLeft = this.div.offsetWidth;
+      divOffset.y = 0;
+      divOffset.x = this.div.offsetWidth;
       break;
     case 'center top':
-      var positionRelativeToDivTop = this.div.offsetHeight;
-      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
+      divOffset.y = this.div.offsetHeight;
+      divOffset.x = this.div.offsetWidth / 2;
       break;
     case 'center center':
-      var positionRelativeToDivTop = this.div.offsetHeight / 2;
-      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
+      divOffset.y = this.div.offsetHeight / 2;
+      divOffset.x = this.div.offsetWidth / 2;
       break;
     case 'center bottom':
-      var positionRelativeToDivTop = 0;
-      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
+      divOffset.y = 0;
+      divOffset.x = this.div.offsetWidth / 2;
       break;
     case 'right top':
-      var positionRelativeToDivTop = this.div.offsetHeight;
-      var positionRelativeToDivLeft = 0;
+      divOffset.y = this.div.offsetHeight;
+      divOffset.x = 0;
       break;
     case 'right center':
-      var positionRelativeToDivTop = this.div.offsetHeight / 2;
-      var positionRelativeToDivLeft = 0;
+      divOffset.y = this.div.offsetHeight / 2;
+      divOffset.x = 0;
       break;
     case 'right bottom':
-      var positionRelativeToDivTop = 0;
-      var positionRelativeToDivLeft = 0;
+      divOffset.y = 0;
+      divOffset.x = 0;
       break;
     default:
-      var positionRelativeToDivTop = this.div.offsetHeight / 2;
-      var positionRelativeToDivLeft = this.div.offsetWidth / 2;
+      divOffset.y = this.div.offsetHeight / 2;
+      divOffset.x = this.div.offsetWidth / 2;
   }
 
-  // Set new position on drag
-  this.div.style.top =
-    positionCorrectionAfterMapDrag.y - positionRelativeToDivTop + 'px';
-  this.div.style.left =
-    positionCorrectionAfterMapDrag.x - positionRelativeToDivLeft + 'px';
+  // Set position
+  this.div.style.top = positionInPixels.y - divOffset.y + 'px';
+  this.div.style.left = positionInPixels.x - divOffset.x + 'px';
 };

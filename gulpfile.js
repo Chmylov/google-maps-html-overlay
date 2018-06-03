@@ -104,7 +104,7 @@ gulp.task('default', () => {
   }, 1000);
 });
 
-gulp.task('watch', ['enableDev', 'default'], () => {
+gulp.task('watch', ['default'], () => {
   gulp.watch('src/html/**/*.html', ['html']);
   gulp.watch('src/js/**/*.js', ['js']);
 });
