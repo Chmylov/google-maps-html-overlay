@@ -24,27 +24,29 @@
     <script src="https://maps.googleapis.com/maps/api/js" type="text/javascript"></script>
     <script src="googleMapsCustomHtmlOverlay.min.js"></script>
     <script>
-        var amsterdam = {
-            lat: 52.3702157,
-            lng: 4.89516789
+
+        var enschede = {
+            lat: 52.2215372,
+            lng: 6.8936619
         }
 
         var map = new google.maps.Map(document.getElementById('map-canvas'), {
             zoom: 15,
-            center: amsterdam
+            center: enschede
         });
 
         var overlay = new HtmlOverlay({
             html:
-                '<div style="background: #625f57"><p style="font-size: 18px; color: white; padding: 1px 10px">Amsterdam</p></div>',
-            position: amsterdam,
-            align: 'center center',
+                '<div style="background: green"><p style="font-size: 18px; color: white; padding: 10px 10px">Enschede</p></div>',
+            position: enschede,
             map: map,
-            debug: true
+            onClick: function () {
+                alert('clicked')
+            }
         });
 
         var marker = new google.maps.Marker({
-            position: amsterdam,
+            position: enschede,
             map: map,
             title: 'Hello World!'
         });

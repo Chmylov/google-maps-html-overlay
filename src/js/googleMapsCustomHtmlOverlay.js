@@ -1,11 +1,12 @@
 function HtmlOverlay(options) {
   // Constructor
+  this.setMap(options.map);
   this.position = options.position;
   this.html = options.html;
   this.divClass = options.divClass;
   this.align = options.align;
   this.isDebugMode = options.debug;
-  this.setMap(options.map);
+  this.onClick = options.onClick;
 
   this.ifNotUndefined = function(arg, callback) {
     if (typeof arg === 'undefined') return;
@@ -38,6 +39,14 @@ function HtmlOverlay(options) {
 
   this.isString = arg => {
     if (typeof arg === 'string') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  this.isFunction = arg => {
+    if (typeof arg === 'function') {
       return true;
     } else {
       return false;
@@ -81,13 +90,15 @@ HtmlOverlay.prototype.onAdd = function() {
         'align-items: center;'
     );
   }
+
   // Add element to clickable layer
   this.getPanes().overlayMouseTarget.appendChild(this.div);
 
   // Add listener to the element.
-  var me = this;
-  google.maps.event.addDomListener(this.div, 'click', function() {
-    google.maps.event.trigger(me, 'click');
+  google.maps.event.addDomListener(this.div, 'click', event => {
+    google.maps.event.trigger(this, 'click');
+    if (this.isFunction(this.onClick)) this.onClick();
+    event.stopPropagation();
   });
 };
 
@@ -148,4 +159,8 @@ HtmlOverlay.prototype.draw = function() {
   // Set position
   this.div.style.top = positionInPixels.y - divOffset.y + 'px';
   this.div.style.left = positionInPixels.x - divOffset.x + 'px';
+};
+
+HtmlOverlay.prototype.getPosition = function() {
+  return this.position;
 };
