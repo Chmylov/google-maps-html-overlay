@@ -53,12 +53,16 @@ gulp.task('js', () => {
 // ----------------------------------------------
 gulp.task('html', () => {
   // Task
-  // npm i gulp-flatten -D
+  // npm i gulp-flatten gulp-htmlmin -D
   const flatten = require('gulp-flatten');
+  const htmlmin = require('gulp-htmlmin');
 
   gulp
     .src('src/html/**/*.html')
     .pipe(flatten())
+    .pipe(
+      htmlmin({ collapseWhitespace: true, minifyCSS: true, minifyJS: true })
+    )
     .pipe(gulp.dest('example'))
     .pipe(browserSync.stream());
 });
