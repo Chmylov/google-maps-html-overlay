@@ -3,7 +3,7 @@
 const gulp = require('gulp');
 // ----------------------------------------------
 
-// Enabel or disabel development
+// Enable or disable development
 // ----------------------------------------------
 let isDev = false;
 
