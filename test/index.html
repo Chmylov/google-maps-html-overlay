@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Google maps custom HTML overlay</title>
+    <title>Google maps HTML overlay</title>
     <style>
         html {
             font-family: Arial, Helvetica, sans-serif;
@@ -27,11 +27,12 @@
 </head>
 
 <body>
-    <h1 class="text-center">Google maps custom HTML overlay</h1>
+    <h1 class="text-center">Google maps HTML overlay</h1>
     <div id="map-canvas"></div>
 
     <script src="https://maps.googleapis.com/maps/api/js" type="text/javascript"></script>
-    <script src="googleMapsCustomHtmlOverlay.min.js"></script>
+    <script src="googleMapsHtmlOverlay.js"></script>
+
     <script>
 
         var enschede = {
@@ -44,7 +45,7 @@
             center: enschede
         });
 
-        var overlay = new HtmlOverlay({
+        var overlay = new GoogleMapsHtmlOverlay({
             html:
                 '<div style="background: green"><p style="font-size: 18px; color: white; padding: 10px 10px">Enschede</p></div>',
             position: enschede,

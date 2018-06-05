@@ -1,4 +1,4 @@
-class HtmlOverlay extends google.maps.OverlayView {
+class GoogleMapsHtmlOverlay extends google.maps.OverlayView {
   constructor(options) {
     super();
     this.setMap(options.map);
@@ -8,7 +8,6 @@ class HtmlOverlay extends google.maps.OverlayView {
     this.align = options.align;
     this.isDebugMode = options.debug;
     this.onClick = options.onClick;
-
     this.isBoolean = arg => {
       if (typeof arg === 'boolean') {
         return true;
