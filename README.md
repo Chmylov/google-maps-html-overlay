@@ -17,7 +17,7 @@ After adding `googleMapsHtmlOverlay.min.js` to your project, for example like th
 ```
 var overlay = new GoogleMapsHtmlOverlay({
     map: map, // bind googleMapsHtmlOverlay to a map
-    position: { lat: 52.2215372, lng: 6.8936619}, // Place overlay on specifiek point
+    position: { lat: 52.2215372, lng: 6.8936619}, // Place overlay on specific point
     html:'<h1>HTML</h1>', // Html goes here
     divClass: 'html-overlay-wrapper' // Set div class on overlay
 });
