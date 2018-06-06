@@ -36,7 +36,7 @@ new GoogleMapsHtmlOverlay({
     align: 'center center',
     debug: false,
     onClick: ''
-    })
+})
 ```
 
 #### Options properties
@@ -71,8 +71,7 @@ Type: `String`
 
 Default: `['center', 'center']`
 
-Position overlay relative to the initial position.
-Possibilities: `['left' || 'center' || 'right' , 'top' || 'center' || 'bottom']`
+Position overlay relative to the initial position. <br />Possibilities: `['left' || 'center' || 'right' , 'top' || 'center' || 'bottom']`
 
 **debug**
 
