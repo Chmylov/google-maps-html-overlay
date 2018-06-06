@@ -24,9 +24,10 @@ var overlay = new GoogleMapsHtmlOverlay({
 ```
 
 To get position of the overlay:
-'''
+
+```
 overlay.getPosition();
-'''
+```
 
 ## API
 
