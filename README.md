@@ -1,6 +1,6 @@
 # Google maps custom HTML overlay
 
-This plugin makes possible to add simply html overlay to the google maps. Scroll down for examples.
+This plugin makes it possible to simply add html overlay to google maps.
 
 Latest version: `1.0.0`
 
@@ -9,9 +9,9 @@ Latest version: `1.0.0`
 Download `googleMapsHtmlOverlay.min.js` from the `dist` folder and add it to your project.
 
 ## Usage
-After adding `googleMapsHtmlOverlay.min.js` to your project like for example like this: `<script src="googleMapsHtmlOverlay.js"></script>`.
 
-Add following to you javaScript file or script tag to create overlay:
+After adding `googleMapsHtmlOverlay.min.js` to your project, for example like this: `<script src="googleMapsHtmlOverlay.js"></script>`, add the following to your javaScript file or script tag to create overlay:
+
 ```
 var overlay = new GoogleMapsHtmlOverlay({
     map: map, // bind googleMapsHtmlOverlay to a map
@@ -22,9 +22,11 @@ var overlay = new GoogleMapsHtmlOverlay({
 ```
 
 ## API
+
 ### GoogleMapsHtmlOverlay([options])
 
 #### Defaults overview
+
 ```
 new GoogleMapsHtmlOverlay({
     map: '',        // required
@@ -38,6 +40,7 @@ new GoogleMapsHtmlOverlay({
 ```
 
 #### Options properties
+
 **map**
 
 Type: `Object`
@@ -45,43 +48,43 @@ Type: `Object`
 Google maps API goes here
 
 **position**
- 
- Type: `Object`
- 
- Set position of HTML overlay
- 
- **html**
- 
- Type: `String`
- 
- **divClass**
- 
- Type: `String`
- 
- Set css class on the HTML overlay
- 
- **align** 
- 
- Type: `String`
- 
- Default: `'center center'`
-  
- Positionate overlay relative to the initial position. 
- Possibilities: `'[left, center, right] [top, center, bottom]''`
- 
- **debug**
- 
- Type: `Boolean`
- 
- Default: `false`
- 
- Turn on the debug mode for testing or for demoing.
- 
- **onClick**
- 
- Type: `Function`
- 
- Do something if overlay is clicked.
+
+Type: `Object`
+
+Set position for HTML overlay
+
+**html**
+
+Type: `String`
+
+**divClass**
+
+Type: `String`
+
+Set css class on the HTML overlay
+
+**align**
+
+Type: `String`
+
+Default: `'center center'`
+
+Position overlay relative to the initial position.
+Possibilities: `'[left, center, right] [top, center, bottom]''`
+
+**debug**
+
+Type: `Boolean`
+
+Default: `false`
+
+Turn on the debug mode for testing or for demoing.
+
+**onClick**
+
+Type: `Function`
+
+Do something if overlay is clicked.
 
 ## License
 
