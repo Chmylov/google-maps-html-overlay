@@ -8,6 +8,7 @@ class GoogleMapsHtmlOverlay extends google.maps.OverlayView {
     this.align = options.align;
     this.isDebugMode = options.debug;
     this.onClick = options.onClick;
+
     this.isBoolean = arg => {
       if (typeof arg === 'boolean') {
         return true;
@@ -95,7 +96,7 @@ class GoogleMapsHtmlOverlay extends google.maps.OverlayView {
   }
 
   draw() {
-    // Calculate positon of div
+    // Calculate position of div
     var positionInPixels = this.getProjection().fromLatLngToDivPixel(
       new google.maps.LatLng(this.position)
     );
@@ -106,7 +107,7 @@ class GoogleMapsHtmlOverlay extends google.maps.OverlayView {
       x: undefined
     };
 
-    switch (this.align) {
+    switch (Array.isArray(this.align) ? this.align.join(' ') : '') {
       case 'left top':
         divOffset.y = this.div.offsetHeight;
         divOffset.x = this.div.offsetWidth;
