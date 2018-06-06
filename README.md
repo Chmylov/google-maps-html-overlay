@@ -53,6 +53,8 @@ Type: `Object`
 
 Set position for HTML overlay
 
+Example: `{ lat: 52.2215372, lng: 6.8936619 }`
+
 **html**
 
 Type: `String`
@@ -67,10 +69,10 @@ Set css class on the HTML overlay
 
 Type: `String`
 
-Default: `'center center'`
+Default: `['center', 'center']`
 
 Position overlay relative to the initial position.
-Possibilities: `'[left, center, right] [top, center, bottom]''`
+Possibilities: `['left' || 'center' || 'right' , 'top' || 'center' || 'bottom']`
 
 **debug**
 
