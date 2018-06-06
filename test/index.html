@@ -47,9 +47,10 @@
 
         var overlay = new GoogleMapsHtmlOverlay({
             html:
-                '<div style="background: green"><p style="font-size: 18px; color: white; padding: 10px 10px">Enschede</p></div>',
+                '<div style="background: black; border-radius: 20px;"><p style="font-size: 18px; color: white; padding: 10px 10px; white-space: nowrap;">Example: HTML Overlay</p></div>',
             position: enschede,
             map: map,
+            debug: true,
             onClick: function () {
                 alert('clicked')
             }
