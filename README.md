@@ -4,7 +4,7 @@ This plugin makes it possible to simply add html overlay to google maps.
 
 ![html-overlay-example](https://raw.githubusercontent.com/Chmylov/google-maps-html-overlay/develop/example/html-overlay-example.PNG)
 
-#### CodePen
+### CodePen
 
 Check it out on [CodePen](https://codepen.io/Chmylov/pen/ELdVmm)
 
