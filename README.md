@@ -8,8 +8,6 @@ This plugin makes it possible to simply add html overlay to google maps.
 
 Check it out on [CodePen](https://codepen.io/Chmylov/pen/ELdVmm)
 
-Latest version: `1.0.0`
-
 ## Install
 
 Download `googleMapsHtmlOverlay.min.js` from the `dist` folder and add it to your project.
