@@ -99,6 +99,12 @@ Type: `Function`
 
 Do something if overlay is clicked.
 
+**onMouseOver**
+
+Type: `Function`
+
+Do something on mouse over.
+
 ## License
 
 [MIT](https://raw.githubusercontent.com/Chmylov/google-maps-html-overlay/develop/LICENSE)

@@ -8,6 +8,7 @@ class GoogleMapsHtmlOverlay extends google.maps.OverlayView {
     this.align = options.align;
     this.isDebugMode = options.debug;
     this.onClick = options.onClick;
+    this.onMouseOver = options.onMouseOver;
 
     this.isBoolean = arg => {
       if (typeof arg === 'boolean') {
@@ -87,10 +88,16 @@ class GoogleMapsHtmlOverlay extends google.maps.OverlayView {
     // Add element to clickable layer
     this.getPanes().overlayMouseTarget.appendChild(this.div);
 
-    // Add listener to the element.
+    // Add listeners to the element.
     google.maps.event.addDomListener(this.div, 'click', event => {
       google.maps.event.trigger(this, 'click');
       if (this.isFunction(this.onClick)) this.onClick();
+      event.stopPropagation();
+    });
+
+    google.maps.event.addDomListener(this.div, 'mouseover', event => {
+      google.maps.event.trigger(this, 'mouseover');
+      if (this.isFunction(this.onMouseOver)) this.onMouseOver();
       event.stopPropagation();
     });
   }
